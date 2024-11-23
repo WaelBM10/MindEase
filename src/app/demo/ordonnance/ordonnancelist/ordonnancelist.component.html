@@ -1,0 +1,213 @@
+<!-- Modal content -->
+<ng-template #profileModal let-modal>
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h4 class="modal-title">Détails de l'Ordonnance</h4>
+      </div>
+      <div class="modal-body">
+        <div *ngIf="doctorInfo">
+          <div class="prescription" id="prescription-preview">
+            <div class="header">
+              <div class="doctor-info">
+                <div class="doctor-name">
+                  <div class="name-fr">
+                    <p>Docteur</p>
+                    <h1>{{ doctorInfo.nameFr }}</h1>
+                    <p>{{ doctorInfo.specialtyFr }}</p>
+                    <br>
+
+                  </div>
+                  <div class="name-ar">
+                    <p>الدكتور</p>
+                    <h1>{{ doctorInfo.nameAr }}</h1>
+                    <p>{{ doctorInfo.specialtyAr }}</p>
+                    <p>*</p>
+                    <p>le: <span class="underline">{{ selectedOrdonnance.time | date: 'longDate' }}</span></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="prescription-content">
+            <p>Nom de Patient : {{selectedOrdonnance.patient}}</p>
+              <div>
+                <p>Prescription:</p>
+                <div *ngFor="let med of selectedOrdonnance.prescription">
+                  <p>{{ med.medicament }}: {{ med.duree }}, {{ med.posologie }}</p>
+                </div>
+              </div>
+            </div>
+            <div class="footer">
+              <div class="contact-info">
+                <p><i class="icon-phone"></i> {{ doctorInfo.phone }}</p>
+                <p><i class="icon-email"></i> {{ doctorInfo.email }}</p>
+                <p><i class="icon-location"></i> {{ doctorInfo.location }}</p>
+              </div>
+              <div class="stethoscope-icon"></div>
+            </div>
+            <!-- Stamp for the doctor -->
+            <div class="stamp">
+              <p>{{ doctorInfo.stamp }}</p>
+            </div>
+            <!-- QR Code for the prescription -->
+            <div class="qr-code">
+                <img [src]="selectedOrdonnance.qrCodeUrl" alt="QR Code">
+              </div>              
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="modal.close()">Fermer</button>
+    </div>
+  </ng-template>
+  
+ 
+
+<ng-template #editModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Modifier l'Ordonnance</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">&times;</button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+        <label for="patient">Nom du Patient</label>
+        <input type="text" class="form-control" id="patient" [(ngModel)]="selectedOrdonnance.patient" name="patient" required />
+      </div>
+      <div class="form-group">
+        <label for="prescription">Prescriptions</label>
+        <div *ngFor="let item of selectedOrdonnance.prescription; let i = index">
+          <div class="form-group">
+            <label for="medicament-{{i}}">Médicament{{i}}</label>
+            <input type="text" class="form-control" id="medicament-{{i}}" [(ngModel)]="item.medicament" name="medicament-{{i}}" />
+          </div>
+          <div class="form-group">
+            <label for="duree-{{i}}">Durée{{i}}</label>
+            <input type="text" class="form-control" id="duree-{{i}}" [(ngModel)]="item.duree" name="duree-{{i}}" />
+          </div>
+          <div class="form-group">
+            <label for="prescription-posologie">Posologie{{i}}</label>
+            <input type="text" class="form-control" id="prescription-posologie" [(ngModel)]="item.posologie" name="prescription-posologie" />
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="time">Date et Heure</label>
+        <input type="text" class="form-control" id="time" [(ngModel)]="selectedOrdonnance.time" name="time" required />
+      </div>
+      <button type="button" class="btn btn-primary" (click)="saveChangesOrdonnance(); modal.close()">Sauvegarder les Modifications</button>
+    </form>
+  </div>
+</ng-template>
+
+ <!-- Modal pour ajouter une ordonnance -->
+<ng-template #addOrdonnanceModal let-modal>
+    <div class="modal-header">
+      <h5 class="modal-title">Ajouter une Ordonnance</h5>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <form>
+        <div class="form-group">
+          <label for="patient">Nom du Patient</label>
+          <input type="text" class="form-control" id="patient" [(ngModel)]="newOrdonnance.patient" name="patient" required />
+        </div>
+        <div class="form-group">
+          <label for="type_de_maladie">Type de Maladie</label>
+          <input type="text" class="form-control" id="type_de_maladie" [(ngModel)]="newOrdonnance.type_de_maladie" name="type_de_maladie" required />
+        </div>
+  
+        <!-- Champs de prescription -->
+        <div class="form-group">
+          <label for="prescription">Prescription</label>
+          <div *ngFor="let item of newOrdonnance.prescription; let i = index">
+            <div class="form-group">
+              <label [for]="'medicament' + i">Médicament {{i + 1}}</label>
+              <input type="text" class="form-control" [id]="'medicament' + i" [(ngModel)]="item.medicament" name="medicament{{i}}" />
+            </div>
+            <div class="form-group">
+              <label [for]="'duree' + i">Durée {{i + 1}}</label>
+              <input type="text" class="form-control" [id]="'duree' + i" [(ngModel)]="item.duree" name="duree{{i}}" />
+            </div>
+            <div class="form-group">
+              <label [for]="'posologie' + i">Posologie {{i + 1}}</label>
+              <input type="text" class="form-control" [id]="'posologie' + i" [(ngModel)]="item.posologie" name="posologie{{i}}" />
+            </div>
+            <!-- Conteneur des boutons -->
+            <div class="button-container">
+              <button type="button" class="btn btn-danger" *ngIf="i >= 1" (click)="removePrescription(i)">Supprimer Prescription</button>
+              <button type="button" class="btn btn-primary" (click)="addPrescription()">Ajouter Prescription</button>
+            </div>
+          </div>
+        </div>
+  
+        <div class="form-group">
+          <label for="creationDate">Date de Création</label>
+          <input type="date" class="form-control" id="creationDate" [(ngModel)]="newOrdonnance.time" name="creationDate" required />
+        </div>
+        
+        <!-- Bouton pour sauvegarder l'ordonnance -->
+        <button type="button" class="btn btn-primary" (click)="saveOrdonnance(); modal.close()">Sauvegarder</button>
+      </form>
+    </div>
+  </ng-template>
+  
+  
+ 
+  
+  <div class="row">
+    <div class="col-xl-12">
+      <app-card cardTitle="Table des Patients" [options]="false" blockClass="table-border-style">
+        <!-- Formulaire de filtre -->
+        <div class="row mb-3">
+          <div class="col-md-4">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Filtrer par nom"
+              (input)="onFilterByName($event)"
+            />
+          </div>
+          <div class="col-md-4">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Filtrer par numéro de téléphone"
+              (input)="onFilterByPhone($event)"
+            />
+          </div>
+          <div class="col-md-4 text-right">
+            <button class="btn btn-success" (click)="openAddOrdonnanceModal(addOrdonnanceModal)">Ajouter Ordonnance</button>
+          </div>
+        </div>
+  
+        <!-- Tableau des patients -->
+        <div class="table-responsive">
+          <table class="table table-styling">
+            <thead>
+              <tr class="table-primary">
+                <th>#</th>
+                <th>Nom</th>
+                <th>Type de Maladie</th>
+                <th>Date de Création</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let Ordonnance of filteredOrdonnances; let i = index">
+                <th scope="row">{{ i + 1 }}</th>
+                <td>{{ Ordonnance .patient }}</td>
+                <td>{{ Ordonnance .type_de_maladie }}</td>
+                <td>{{ Ordonnance .time| date }}</td>
+                <td>
+                  <button class="btn btn-info btn-sm" (click)="openModal('view', Ordonnance)">Voir</button>
+                  <button class="btn btn-warning btn-sm" (click)="openModal('edit', Ordonnance)">Modifier</button>
+                  <button class="btn btn-danger btn-sm" (click)="deleteOrdonnance(Ordonnance)">Supprimer</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </app-card>
+    </div>
+  </div>

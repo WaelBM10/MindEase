@@ -1,0 +1,234 @@
+<div class="row">
+    <div class="col-xl-12">
+      <app-card cardTitle="Table des Patients" [options]="false" blockClass="table-border-style">
+        <!-- Formulaire de filtre -->
+        <div class="row mb-3">
+          <div class="col-md-4">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Filtrer par nom"
+              (input)="onFilterByName($event)"
+            />
+          </div>
+          <div class="col-md-4">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Filtrer par numéro de téléphone"
+              (input)="onFilterByPhone($event)"
+            />
+          </div>
+          <div class="col-md-4 text-right">
+            <button class="btn btn-success" (click)="openAddPatientModal(addPatientModal)">Ajouter Patient</button>
+          </div>
+        </div>
+  
+        <!-- Tableau des patients -->
+        <div class="table-responsive">
+          <table class="table table-styling">
+            <thead>
+              <tr class="table-primary">
+                <th>#</th>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Date de Naissance</th>
+                <th>Nationalité</th>
+                <th>Profession</th>
+                <th>Numero de Telephone</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let patient of filteredPatients; let i = index">
+                <th scope="row">{{ i + 1 }}</th>
+                <td>{{ patient.nom }}</td>
+                <td>{{ patient.prenom }}</td>
+                <td>{{ patient.dateNaissance | date }}</td>
+                <td>{{ patient.nationalite }}</td>
+                <td>{{ patient.profession }}</td>
+                <td>{{ patient.contactsUrgence }}</td>
+                <td>
+                  <button class="btn btn-info btn-sm" (click)="openModal('view', patient)">Voir</button>
+                  <button class="btn btn-warning btn-sm" (click)="openModal('edit', patient)">Modifier</button>
+                  <button class="btn btn-danger btn-sm" (click)="deletePatient(patient)">Supprimer</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </app-card>
+    </div>
+  </div>
+  
+ <!-- Modal pour ajouter un patient -->
+<ng-template #addPatientModal let-modal>
+    <div class="modal-header">
+      <h5 class="modal-title">Ajouter un Patient</h5>
+      <button type="button" class="close" (click)="modal.dismiss('Cross click')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <form>
+        <div class="form-group">
+            <label for="cin">CIN</label>
+            <input type="text" class="form-control" id="cin" [(ngModel)]="newPatient.cin" name="cin" required />
+          </div>
+        <div class="form-group">
+          <label for="nom">Nom</label>
+          <input type="text" class="form-control" id="nom" [(ngModel)]="newPatient.nom" name="nom" required />
+        </div>
+        <div class="form-group">
+          <label for="prenom">Prénom</label>
+          <input type="text" class="form-control" id="prenom" [(ngModel)]="newPatient.prenom" name="prenom" required />
+        </div>
+        <div class="form-group">
+          <label for="dateNaissance">Date de Naissance</label>
+          <input type="date" class="form-control" id="dateNaissance" [(ngModel)]="newPatient.dateNaissance" name="dateNaissance" required />
+        </div>
+        <div class="form-group">
+          <label for="nationalite">Nationalité</label>
+          <input type="text" class="form-control" id="nationalite" [(ngModel)]="newPatient.nationalite" name="nationalite" />
+        </div>
+        <div class="form-group">
+          <label for="profession">Profession</label>
+          <input type="text" class="form-control" id="profession" [(ngModel)]="newPatient.profession" name="profession" />
+        </div>
+        <div class="form-group">
+          <label for="groupeSanguin">Groupe Sanguin</label>
+          <input type="text" class="form-control" id="groupeSanguin" [(ngModel)]="newPatient.groupeSanguin" name="groupeSanguin" required />
+        </div>
+        <div class="form-group">
+          <label for="allergies">Allergies</label>
+          <input type="text" class="form-control" id="allergies" [(ngModel)]="newPatient.allergies" name="allergies" />
+        </div>
+        <div class="form-group">
+          <label for="maladiesChroniques">Maladies Chroniques</label>
+          <input type="text" class="form-control" id="maladiesChroniques" [(ngModel)]="newPatient.maladiesChroniques" name="maladiesChroniques" />
+        </div>
+        <div class="form-group">
+          <label for="medicaments">Médicaments</label>
+          <input type="text" class="form-control" id="medicaments" [(ngModel)]="newPatient.medicaments" name="medicaments" />
+        </div>
+        <div class="form-group">
+          <label for="antecedentsMedicaux">Antécédents Médicaux</label>
+          <input type="text" class="form-control" id="antecedentsMedicaux" [(ngModel)]="newPatient.antecedentsMedicaux" name="antecedentsMedicaux" />
+        </div>
+        <div class="form-group">
+          <label for="assurance">Assurance</label>
+          <input type="text" class="form-control" id="assurance" [(ngModel)]="newPatient.assurance" name="assurance" />
+        </div>
+        <div class="form-group">
+          <label for="contactsUrgence">Contact Urgence</label>
+          <input type="text" class="form-control" id="contactsUrgence" [(ngModel)]="newPatient.contactsUrgence" name="contactsUrgence" />
+        </div>
+        <div class="form-group">
+          <label for="relationContactUrgence">Relation avec Contact Urgence</label>
+          <input type="text" class="form-control" id="relationContactUrgence" [(ngModel)]="newPatient.relationContactUrgence" name="relationContactUrgence" />
+        </div>
+
+        <!-- Bouton pour sauvegarder le patient -->
+        <button type="button" class="btn btn-primary" (click)="savePatient(); modal.close()">Sauvegarder</button>
+      </form>
+    </div>
+  </ng-template>
+  
+  
+<!-- Modal pour modifier un patient -->
+<ng-template #editModal let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Modifier le Patient</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <form>
+        <div class="form-group">
+            <label for="cin">CIN</label>
+            <input type="text" class="form-control" id="cin" [(ngModel)]="selectedPatient.cin" name="cin" required />
+          </div>
+        <div class="form-group">
+          <label for="nom">Nom</label>
+          <input type="text" class="form-control" id="nom" [(ngModel)]="selectedPatient.nom" name="nom" required />
+        </div>
+        <div class="form-group">
+          <label for="prenom">Prénom</label>
+          <input type="text" class="form-control" id="prenom" [(ngModel)]="selectedPatient.prenom" name="prenom" required />
+        </div>
+        <div class="form-group">
+          <label for="dateNaissance">Date de Naissance</label>
+          <input type="date" class="form-control" id="dateNaissance" [(ngModel)]="selectedPatient.dateNaissance" name="dateNaissance" required />
+        </div>
+        <div class="form-group">
+          <label for="nationalite">Nationalité</label>
+          <input type="text" class="form-control" id="nationalite" [(ngModel)]="selectedPatient.nationalite" name="nationalite" />
+        </div>
+        <div class="form-group">
+          <label for="profession">Profession</label>
+          <input type="text" class="form-control" id="profession" [(ngModel)]="selectedPatient.profession" name="profession" />
+        </div>
+        <div class="form-group">
+          <label for="groupeSanguin">Groupe Sanguin</label>
+          <input type="text" class="form-control" id="groupeSanguin" [(ngModel)]="selectedPatient.groupeSanguin" name="groupeSanguin" required />
+        </div>
+        <div class="form-group">
+          <label for="allergies">Allergies</label>
+          <input type="text" class="form-control" id="allergies" [(ngModel)]="selectedPatient.allergies" name="allergies" />
+        </div>
+        <div class="form-group">
+          <label for="maladiesChroniques">Maladies Chroniques</label>
+          <input type="text" class="form-control" id="maladiesChroniques" [(ngModel)]="selectedPatient.maladiesChroniques" name="maladiesChroniques" />
+        </div>
+        <div class="form-group">
+          <label for="medicaments">Médicaments</label>
+          <input type="text" class="form-control" id="medicaments" [(ngModel)]="selectedPatient.medicaments" name="medicaments" />
+        </div>
+        <div class="form-group">
+          <label for="antecedentsMedicaux">Antécédents Médicaux</label>
+          <input type="text" class="form-control" id="antecedentsMedicaux" [(ngModel)]="selectedPatient.antecedentsMedicaux" name="antecedentsMedicaux" />
+        </div>
+        <div class="form-group">
+          <label for="assurance">Assurance</label>
+          <input type="text" class="form-control" id="assurance" [(ngModel)]="selectedPatient.assurance" name="assurance" />
+        </div>
+        <div class="form-group">
+          <label for="contactsUrgence">Contact Urgence</label>
+          <input type="text" class="form-control" id="contactsUrgence" [(ngModel)]="selectedPatient.contactsUrgence" name="contactsUrgence" />
+        </div>
+        <div class="form-group">
+          <label for="relationContactUrgence">Relation avec Contact Urgence</label>
+          <input type="text" class="form-control" id="relationContactUrgence" [(ngModel)]="selectedPatient.relationContactUrgence" name="relationContactUrgence" />
+        </div>
+        <!-- Bouton pour sauvegarder les modifications -->
+        <button type="button" class="btn btn-primary" (click)="saveChangesPatient(); modal.close()">Sauvegarder les Modifications</button>
+      </form>
+    </div>
+  </ng-template>
+  
+ <!-- Modal pour afficher les détails d'un patient -->
+<ng-template #profileModal let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Détails du Patient</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <!-- Afficher les détails du patient -->
+      <div *ngIf="selectedPatient">
+        <p><strong>Cin:</strong>{{selectedPatient.cin}}</p>
+        <p><strong>Nom :</strong> {{ selectedPatient.nom }}</p>
+        <p><strong>Prénom :</strong> {{ selectedPatient.prenom }}</p>
+        <p><strong>Date de Naissance :</strong> {{ selectedPatient.dateNaissance | date }}</p>
+        <p><strong>Numero de Telephone:</strong> {{ selectedPatient.contactsUrgence }}</p>
+        <p><strong>Nationalité :</strong> {{ selectedPatient.nationalite }}</p>
+        <p><strong>Profession :</strong> {{ selectedPatient.profession }}</p>
+        <p><strong>Groupe Sanguin :</strong> {{ selectedPatient.groupeSanguin }}</p>
+        <p><strong>Allergies :</strong> {{ selectedPatient.allergies }}</p>
+        <p><strong>Maladies Chroniques :</strong> {{ selectedPatient.maladiesChroniques }}</p>
+        <p><strong>Médicaments :</strong> {{ selectedPatient.medicaments }}</p>
+        <p><strong>Antécédents Médicaux :</strong> {{ selectedPatient.antecedentsMedicaux }}</p>
+        <p><strong>Assurance :</strong> {{ selectedPatient.assurance }}</p>
+        <p><strong>Relation avec Contact Urgence :</strong> {{ selectedPatient.relationContactUrgence }}</p>
+
+
+      </div>
+    </div>
+  </ng-template>
+  

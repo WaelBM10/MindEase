@@ -1,0 +1,219 @@
+<!-- Modal content -->
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Ordonnance</h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+      <div *ngIf="selectedPrescription">
+        <!-- Image and Doctor Information -->
+        <div class="d-flex align-items-center mb-3">
+          <img [src]="selectedPrescription.src" class="img-fluid rounded-circle me-3" alt="Avatar" width="80" />
+          <div>
+            <h5 class="mb-0">{{ selectedPrescription.title }}</h5>
+            <p class="text-muted mb-0"><strong>Specialité:</strong> {{ selectedPrescription.specialty }}</p>
+          </div>
+        </div>
+  
+        <!-- Prescription Details -->
+        <div>
+          <h5><strong>Patient:</strong> {{ selectedPrescription.patient }}</h5>
+          <h6 class="mt-4">Détails de l'Ordonnance :</h6>
+          <ul class="list-group">
+            <li class="list-group-item" *ngFor="let item of selectedPrescription.prescription">
+              <strong>Médicament:</strong> {{ item.medicament }} <br />
+              <strong>Durée:</strong> {{ item.duree }} <br />
+              <strong>Posologie:</strong> {{ item.posologie }}
+            </li>
+          </ul>
+        </div>
+  
+        <!-- Time of Prescription -->
+        <p class="text-muted"><small><strong>Date:</strong> {{ selectedPrescription.time }}</small></p>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="modal.dismiss('Close click')">Fermer</button>
+    </div>
+  </ng-template>
+  
+  <!-- Tableau de bord -->
+  <div class="container-fluid">
+    <div class="row">
+      <div *ngFor="let sale of sales" class="{{ sale.design }} col-xl-4">
+        <app-card [hidHeader]="true">
+          <h6 class="mb-4">{{ sale.title }}</h6>
+          <div class="row d-flex align-items-center">
+            <div class="col-9">
+              <h3 class="f-w-300 d-flex align-items-center m-b-0">
+                <i class="feather {{ sale.icon }} f-30 m-r-10"></i>
+                {{ sale.amount }}
+              </h3>
+            </div>
+            <div class="col-3 text-end">
+              <p class="m-b-0">{{ sale.percentage }}</p>
+            </div>
+          </div>
+          <div class="m-t-30">
+            <ngb-progressbar type="text-primary" height="7px" [value]="sale.progress"></ngb-progressbar>
+          </div>
+        </app-card>
+      </div>
+  
+      <div class="col-xl-8 col-md-6">
+        <app-card cardTitle="Géolocalisation">
+          <!-- <div id="world-low" style="height: 450px"></div> -->
+           <div ><app-map-doctor></app-map-doctor></div>
+        </app-card>
+      </div>
+  
+      <div class="col-xl-4 col-md-6">
+        <div class="card bg-c-blue"> <!-- Assurez-vous que bg-c-blue est défini -->
+          <div class="card-header borderless">
+            <h5 class="text-white">Ordonnance</h5>
+          </div>
+          <div class="card-block" style="padding: 0 25px">
+            <div class="earning-text mb-0">
+              <h3 class="mb-2 text-white f-w-300">
+                {{ totalOrdonnance }}
+                <i class="feather icon-arrow-up teal accent-3"></i>
+              </h3>
+              <span class="text-uppercase text-white d-block">Total Ordonnance Par Semaine</span>
+            </div>
+            <div class="ord">
+              <div id="widget-line-chart" class="WidgetlineChart2 ChartShadow" style="height: 90px"></div>
+            </div>
+
+          </div>
+        </div>
+      
+  
+        <!-- <div class="card">
+          <div *ngFor="let list of card" class="card-block {{ list.design }}">
+            <div class="row d-flex align-items-center">
+              <div class="col-auto">
+                <i class="feather {{ list.icon }} f-30"></i>
+              </div>
+              <div class="col">
+                <h3 class="f-w-300">{{ list.number }}</h3>
+                <span class="d-block text-uppercase">{{ list.text }}</span>
+              </div>
+            </div>
+          </div>
+        </div> -->
+      </div>
+    </div>
+  
+    <h4>Charts</h4>
+    <br>
+     <div class="row"> 
+      <!-- <p>Focalisation des foyers de maladies</p>  -->
+  
+      <!-- Premier graphique : Maladies les plus fréquentes -->
+      <!-- <div class="col-xl-6 col-md-6">
+        <app-card cardTitle="Maladies les plus fréquentes" [options]="false">
+          <apx-chart
+            [series]="maladieChart.series"
+            [chart]="maladieChart.chart"
+            [dataLabels]="maladieChart.dataLabels"
+            [plotOptions]="maladieChart.plotOptions"
+            [yaxis]="maladieChart.yaxis"
+            [fill]="maladieChart.fill"
+            [stroke]="maladieChart.stroke"
+            [tooltip]="maladieChart.tooltip"
+            [xaxis]="maladieChart.xaxis"
+          ></apx-chart>
+        </app-card>
+      </div> -->
+  
+      <!-- Deuxième graphique : Médicaments les plus fréquents -->
+      <!-- <div class="col-xl-6 col-md-6">
+        <app-card cardTitle="Médicaments les plus fréquents associés aux maladies" [options]="false">
+          <apx-chart
+            [series]="medicamentChart.series"
+            [chart]="medicamentChart.chart"
+            [dataLabels]="medicamentChart.dataLabels"
+            [plotOptions]="medicamentChart.plotOptions"
+            [yaxis]="medicamentChart.yaxis"
+            [fill]="medicamentChart.fill"
+            [stroke]="medicamentChart.stroke"
+            [tooltip]="medicamentChart.tooltip"
+            [xaxis]="medicamentChart.xaxis"
+          ></apx-chart>
+        </app-card>
+      </div> -->
+  
+      <div class="col-xl-6 col-md-6" >
+        <p>Gestion de Flux</p>
+        <app-card cardTitle="Répartition de Traffic" [options]="false" >
+          <apx-chart
+            [series]="pieChart.series"
+            [chart]="pieChart.chart"
+            [labels]="pieChart.labels"
+            [colors]="pieChart.colors"
+            [legend]="pieChart.legend"
+            [dataLabels]="pieChart.dataLabels"
+            [plotOptions]="pieChart.plotOptions"
+          ></apx-chart>
+        </app-card>
+      </div>
+  
+      <div class="col-xl-6 col-md-6">
+        <p>Gestion de la Charge de Travail</p>
+        <app-card cardTitle="Consultations Par Jour" [options]="false">
+          <apx-chart
+            [series]="workloadChart.series"
+            [chart]="workloadChart.chart"
+            [xaxis]="workloadChart.xaxis"
+            [yaxis]="workloadChart.yaxis"
+            [stroke]="workloadChart.stroke"
+            [tooltip]="workloadChart.tooltip"
+          ></apx-chart>
+        </app-card>
+      </div>
+      
+    <!-- < <div class="row">
+      <div class="col-xl-12">
+        Champ de recherche pour filtrer les médecins par nom
+       <input 
+          type="text" 
+          class="form-control mb-3" 
+          placeholder="Rechercher un médecin par nom..." 
+          [(ngModel)]="searchText" 
+        />
+      -->
+        <!-- <app-card cardTitle="List d'Ordonnance" cardClass="Recent-Users" blockClass="p-0">
+          <div class="table-responsive">
+            <table class="table table-hover mb-0">
+              <tbody> -->
+                <!-- Filtrage dynamique basé sur la propriété searchText -->
+                <!-- <tr *ngFor="let table of filteredTables(); let i = index">
+                  <td>
+                    <img class="rounded-circle" style="width: 40px" [src]="table.src" alt="activity-user" />
+                  </td>
+                  <td>
+                    <h6 class="mb-1">{{ table.title }}</h6>
+                    <p class="m-0">{{ table.specialty }}</p>
+                  </td>
+                  <td>
+                    <h6 class="text-muted">
+                      <i class="fas fa-circle {{ table.color }} f-10 m-r-15"></i>
+                      {{ table.time }}
+                    </h6>
+                  </td>
+                  <td>
+                    <button type="button" class="btn btn-success btn-custom" (click)="open(content, i)">
+                      <i class="fas fa-eye"></i> View
+                    </button>
+                    
+                    
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </app-card> -->
+      <!-- </div>
+    </div>
+     --> 
+  

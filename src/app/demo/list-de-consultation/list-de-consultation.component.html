@@ -1,0 +1,173 @@
+<div class="row">
+    <div class="col-xl-12">
+      <app-card cardTitle="Table des Consultations" [options]="false" blockClass="table-border-style">
+        <!-- Formulaire de filtre -->
+        <div class="row mb-3">
+          <div class="col-md-4">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Filtrer par nom"
+              (input)="onFilterByName($event)"
+            />
+          </div>
+          <div class="col-md-4">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Filtrer par numéro de téléphone"
+              (input)="onFilterByPhone($event)"
+            />
+          </div>
+          <div class="col-md-4 text-right">
+            <button class="btn btn-success" (click)="openAddConsultationModal(addConsultationModal)">Ajouter Consultation</button>
+          </div>
+        </div>
+  
+        <!-- Tableau des consultations -->
+        <div class="table-responsive">
+          <table class="table table-styling">
+            <thead>
+              <tr class="table-primary">
+                <th>#</th>
+                <th>Nom du Patient</th>
+                <th>Type de Consultation</th>
+                <th>Numéro de Téléphone</th>
+                <th>Date de Consultation</th>
+                <th>Maladie</th>
+                <!-- <th>Constatation</th> -->
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let consultation of filteredConsultations; let i = index">
+                <th scope="row">{{ i + 1 }}</th>
+                <td>{{ consultation.nomPatient }}</td>
+                <td>{{ consultation.typeConsultation }}</td>
+                <td>{{ consultation.numeroTelephonePatient }}</td>
+                <td>{{ consultation.dateConsultation | date }}</td>
+                <td>{{ consultation.maladie }}</td>
+                <!-- <td>{{ consultation.constatation }}</td> -->
+                <td>
+                  <button class="btn btn-info btn-sm" (click)="openModal('view', consultation)">Voir</button>
+                  <button class="btn btn-warning btn-sm" (click)="openModal('edit', consultation)">Modifier</button>
+                  <button class="btn btn-danger btn-sm" (click)="deleteConsultation(consultation)">Supprimer</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </app-card>
+    </div>
+  </div>
+  
+  <!-- Modal pour ajouter une consultation -->
+  <ng-template #addConsultationModal let-modal>
+    <div class="modal-header">
+      <h5 class="modal-title">Ajouter une Consultation</h5>
+      <button type="button" class="close" (click)="modal.dismiss('Cross click')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <form>
+        <!-- Champs pour chaque propriété du modèle Consultation -->
+        <div class="form-group">
+          <label for="nomPatient">Nom du Patient</label>
+          <input type="text" class="form-control" id="nomPatient" [(ngModel)]="newConsultation.nomPatient" name="nomPatient" required />
+        </div>
+        <div class="form-group">
+          <label for="numeroTelephonePatient">Numéro de Téléphone</label>
+          <input type="text" class="form-control" id="numeroTelephonePatient" [(ngModel)]="newConsultation.numeroTelephonePatient" name="numeroTelephonePatient" required />
+        </div>
+        <div class="form-group">
+          <label for="dateConsultation">Date de Consultation</label>
+          <input type="date" class="form-control" id="dateConsultation" [(ngModel)]="newConsultation.dateConsultation" name="dateConsultation" required />
+        </div>
+        <div class="form-group">
+          <label for="typeConsultation">Type de Consultation</label>
+          <input type="text" class="form-control" id="typeConsultation" [(ngModel)]="newConsultation.typeConsultation" name="typeConsultation" required />
+        </div>
+        <div class="form-group">
+          <label for="maladie">Maladie</label>
+          <input type="text" class="form-control" id="maladie" [(ngModel)]="newConsultation.maladie" name="maladie" required />
+        </div>
+        <div class="form-group">
+          <label for="constatation">Constatation</label>
+          <textarea class="form-control" id="constatation" [(ngModel)]="newConsultation.constatation" name="constatation"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="notesMedecin">Notes du Médecin</label>
+            <textarea class="form-control" id="notesMedecin" [(ngModel)]="newConsultation.notesMedecin" name="notesMedecin"></textarea>
+          </div>
+        <!-- Bouton pour sauvegarder la consultation -->
+        <button type="button" class="btn btn-primary" (click)="saveConsultation(); modal.close()">Sauvegarder</button>
+      </form>
+    </div>
+  </ng-template>
+  
+  <!-- Modal pour modifier une consultation -->
+  <ng-template #editModal let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Modifier la Consultation</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <form>
+        <!-- Champs pour chaque propriété du modèle Consultation -->
+        <div class="form-group">
+          <label for="nomPatient">Nom du Patient</label>
+          <input type="text" class="form-control" id="nomPatient" [(ngModel)]="selectedConsultation.nomPatient" name="nomPatient" />
+        </div>
+        <div class="form-group">
+          <label for="numeroTelephonePatient">Numéro de Téléphone</label>
+          <input type="text" class="form-control" id="numeroTelephonePatient" [(ngModel)]="selectedConsultation.numeroTelephonePatient" name="numeroTelephonePatient" />
+        </div>
+        <div class="form-group">
+          <label for="dateConsultation">Date de Consultation</label>
+          <input type="date" class="form-control" id="dateConsultation" [(ngModel)]="selectedConsultation.dateConsultation" name="dateConsultation" />
+        </div>
+        <div class="form-group">
+          <label for="typeConsultation">Type de Consultation</label>
+          <input type="text" class="form-control" id="typeConsultation" [(ngModel)]="selectedConsultation.typeConsultation" name="typeConsultation" />
+        </div>
+        <div class="form-group">
+          <label for="maladie">Maladie</label>
+          <input type="text" class="form-control" id="maladie" [(ngModel)]="selectedConsultation.maladie" name="maladie" />
+        </div>
+        <div class="form-group">
+          <label for="constatation">Constatation</label>
+          <textarea class="form-control" id="constatation" [(ngModel)]="selectedConsultation.constatation" name="constatation"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="notesMedecin">Notes du Médecin</label>
+            <textarea class="form-control" id="notesMedecin" [(ngModel)]="selectedConsultation.notesMedecin" name="notesMedecin"></textarea>
+          </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="modal.dismiss('Cross click')">Fermer</button>
+      <button type="button" class="btn btn-primary" (click)="saveChangesConsultation()">Enregistrer les modifications</button>
+    </div>
+  </ng-template>
+  
+  <!-- Modal pour voir une consultation -->
+  <ng-template #profileModal let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Profil de la Consultation</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div *ngIf="selectedConsultation">
+        <h5>{{ selectedConsultation.nomPatient }}</h5>
+        <p><strong>Type de Consultation:</strong> {{ selectedConsultation.typeConsultation }}</p>
+        <p><strong>Numéro de Téléphone:</strong> {{ selectedConsultation.numeroTelephonePatient }}</p>
+        <p><strong>Date de Consultation:</strong> {{ selectedConsultation.dateConsultation | date }}</p>
+        <p><strong>Maladie:</strong> {{ selectedConsultation.maladie }}</p>
+        <p><strong>Constatation:</strong> {{ selectedConsultation.constatation }}</p>
+        <p><strong>Notes du Médecin :</strong> {{ selectedConsultation.notesMedecin }}</p>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="modal.dismiss('Close click')">Fermer</button>
+    </div>
+  </ng-template>
+  

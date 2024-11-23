@@ -1,0 +1,251 @@
+<!-- <div class="row">
+  <div class="col-md-6">
+    <app-card cardTitle="Bar Simple Chart" [options]="false">
+      <apx-chart
+        [series]="barSimpleChart.series"
+        [chart]="barSimpleChart.chart"
+        [dataLabels]="barSimpleChart.dataLabels"
+        [plotOptions]="barSimpleChart.plotOptions"
+        [yaxis]="barSimpleChart.yaxis"
+        [legend]="barSimpleChart.legend"
+        [fill]="barSimpleChart.fill"
+        [stroke]="barSimpleChart.stroke"
+        [tooltip]="barSimpleChart.tooltip"
+        [xaxis]="barSimpleChart.xaxis"
+      ></apx-chart>
+    </app-card>
+  </div>
+  <div class="col-md-6">
+    <app-card cardTitle="Bar Stacked Chart" [options]="false">
+      <apx-chart
+        [series]="barStackedChart.series"
+        [chart]="barStackedChart.chart"
+        [dataLabels]="barStackedChart.dataLabels"
+        [plotOptions]="barStackedChart.plotOptions"
+        [responsive]="barStackedChart.responsive"
+        [xaxis]="barStackedChart.xaxis"
+        [legend]="barStackedChart.legend"
+        [fill]="barStackedChart.fill"
+      ></apx-chart>
+    </app-card>
+  </div>
+  <div class="col-md-6">
+    <app-card cardTitle="Area Angle Chart" [options]="false">
+      <apx-chart
+        [series]="areaAngleChart.series"
+        [chart]="areaAngleChart.chart"
+        [fill]="areaAngleChart.fill"
+        [stroke]="areaAngleChart.stroke"
+        [xaxis]="areaAngleChart.xaxis"
+        [tooltip]="areaAngleChart.tooltip"
+      ></apx-chart>
+    </app-card>
+  </div>
+  <div class="col-md-6">
+    <app-card cardTitle="Area Smooth Chart" [options]="false">
+      <apx-chart
+        [series]="areaSmoothChart.series"
+        [chart]="areaSmoothChart.chart"
+        [xaxis]="areaSmoothChart.xaxis"
+        [stroke]="areaSmoothChart.stroke"
+        [tooltip]="areaSmoothChart.tooltip"
+        [dataLabels]="areaSmoothChart.dataLabels"
+      ></apx-chart>
+    </app-card>
+  </div>
+  <div class="col-md-6">
+    <app-card cardTitle="Line Angle Chart" [options]="false">
+      <apx-chart
+        [series]="lineAreaChart.series"
+        [chart]="lineAreaChart.chart"
+        [xaxis]="lineAreaChart.xaxis"
+        [dataLabels]="lineAreaChart.dataLabels"
+        [grid]="lineAreaChart.grid"
+        [stroke]="lineAreaChart.stroke"
+        [title]="lineAreaChart.title"
+      ></apx-chart>
+    </app-card>
+  </div>
+  <div class="col-md-6">
+    <app-card cardTitle="Line Angle Chart" [options]="false">
+      <apx-chart
+        [series]="donutChart.series"
+        [chart]="donutChart.chart"
+        [labels]="donutChart.labels"
+        [colors]="donutChart.colors"
+        [legend]="donutChart.legend"
+        [dataLabels]="donutChart.dataLabels"
+        [plotOptions]="donutChart.plotOptions"
+      ></apx-chart>
+    </app-card>
+  </div>
+</div> -->
+<div class="row">
+  <div class="col-xl-12">
+    <app-card cardTitle="Table d'Etablissement" [options]="false" blockClass="table-border-style">
+      <!-- Formulaire de filtre -->
+      <div class="row mb-3">
+        <div class="col-md-4">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Filtrer par nom"
+            (input)="onFilterByName($event)"
+          />
+        </div>
+        <div class="col-md-4">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Filtrer par numéro de téléphone"
+            (input)="onFilterByPhone($event)"
+          />
+        </div>
+        <div class="col-md-4 text-right">
+          <button class="btn btn-success" (click)="openAddMedecinModal(addEtablissementModal)">Ajouter Etablissement</button>
+        </div>
+      </div>
+  
+ <!-- Tableau des médecins -->
+<div class="table-responsive">
+  <table class="table table-styling">
+    <thead>
+      <tr class="table-primary">
+        <th>#</th>
+        <th>Nom</th>
+        <th>Spécialité</th>
+        <th>Numéro de téléphone</th>
+        <th>Adresse</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let etablissement of filteredEtablissements; let i = index">
+        <th scope="row">{{ i + 1 }}</th>
+        <td>{{etablissement.nom }} </td>
+        <td>{{ etablissement.typeEtablissement }}</td>
+        <td>{{ etablissement.numeroTelephone }}</td>
+        <td>{{ etablissement.adresse }}</td>
+        <td>
+          <button class="btn btn-info btn-sm" (click)="openModal('view', etablissement)">Voir</button>
+          <button class="btn btn-warning btn-sm" (click)="openModal('edit', etablissement)">Modifier</button>
+          <button class="btn btn-danger btn-sm" (click)="deleteMedecin(etablissement)">Supprimer</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  
+<!-- Modal pour ajouter un établissement -->
+<ng-template #addEtablissementModal let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title">Ajouter un Établissement</h5>
+    <button type="button" class="close" (click)="modal.dismiss('Cross click')">&times;</button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <!-- Champs pour chaque propriété du modèle Etablissement -->
+      <div class="form-group">
+        <label for="nomEtablissement">Nom de l'Établissement</label>
+        <input type="text" class="form-control" id="nomEtablissement" [(ngModel)]="newEtablissement.nom" name="nomEtablissement" required />
+      </div>
+      <div class="form-group">
+        <label for="typeEtablissement">Type d'Établissement</label>
+        <input type="text" class="form-control" id="typeEtablissement" [(ngModel)]="newEtablissement.typeEtablissement" name="typeEtablissement" required />
+      </div>
+      <div class="form-group">
+        <label for="emailEtablissement">Email</label>
+        <input type="email" class="form-control" id="emailEtablissement" [(ngModel)]="newEtablissement.email" name="emailEtablissement" required />
+      </div>
+      <div class="form-group">
+        <label for="siteEtablissement">Site Web</label>
+        <input type="url" class="form-control" id="siteEtablissement" [(ngModel)]="newEtablissement.site" name="siteEtablissement" />
+      </div>
+      <div class="form-group">
+        <label for="directeurEtablissement">Directeur</label>
+        <input type="text" class="form-control" id="directeurEtablissement" [(ngModel)]="newEtablissement.directeur" name="directeurEtablissement" />
+      </div>
+      <div class="form-group">
+        <label for="adresseEtablissement">Adresse</label>
+        <input type="text" class="form-control" id="adresseEtablissement" [(ngModel)]="newEtablissement.adresse" name="adresseEtablissement" required />
+      </div>
+      <div class="form-group">
+        <label for="responsableEtablissement">Responsable</label>
+        <input type="text" class="form-control" id="responsableEtablissement" [(ngModel)]="newEtablissement.responsable" name="responsableEtablissement" required />
+      </div>
+      <!-- Bouton pour sauvegarder l'établissement -->
+      <button type="button" class="btn btn-primary" (click)="saveEtablissement(); modal.close()">Sauvegarder</button>
+    </form>
+  </div>
+</ng-template>
+
+
+<!-- Modal pour modifier l'établissement -->
+<ng-template #editModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Modifier l'Établissement</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">&times;</button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <!-- Champs pour chaque propriété du modèle Etablissement -->
+      <div class="form-group">
+        <label for="nomEtablissement">Nom de l'Établissement</label>
+        <input type="text" class="form-control" id="nomEtablissement" [(ngModel)]="selectedEtablissement.nom" name="nomEtablissement" />
+      </div>
+      <div class="form-group">
+        <label for="typeEtablissement">Type d'Établissement</label>
+        <input type="text" class="form-control" id="typeEtablissement" [(ngModel)]="selectedEtablissement.typeEtablissement" name="typeEtablissement" />
+      </div>
+      <div class="form-group">
+        <label for="emailEtablissement">Email</label>
+        <input type="email" class="form-control" id="emailEtablissement" [(ngModel)]="selectedEtablissement.email" name="emailEtablissement" />
+      </div>
+      <div class="form-group">
+        <label for="siteEtablissement">Site Web</label>
+        <input type="url" class="form-control" id="siteEtablissement" [(ngModel)]="selectedEtablissement.site" name="siteEtablissement" />
+      </div>
+      <div class="form-group">
+        <label for="directeurEtablissement">Directeur</label>
+        <input type="text" class="form-control" id="directeurEtablissement" [(ngModel)]="selectedEtablissement.directeur" name="directeurEtablissement" />
+      </div>
+      <div class="form-group">
+        <label for="adresseEtablissement">Adresse</label>
+        <input type="text" class="form-control" id="adresseEtablissement" [(ngModel)]="selectedEtablissement.adresse" name="adresseEtablissement" />
+      </div>
+      <div class="form-group">
+        <label for="responsableEtablissement">Responsable</label>
+        <input type="text" class="form-control" id="responsableEtablissement" [(ngModel)]="selectedEtablissement.responsable" name="responsableEtablissement" />
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="modal.dismiss('Cross click')">Fermer</button>
+    <button type="button" class="btn btn-primary" (click)="saveChangesEtablissement()">Enregistrer les modifications</button>
+  </div>
+</ng-template>
+
+ <!-- Modal pour voir l'établissement -->
+<ng-template #profileModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Profil de l'Établissement</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">&times;</button>
+  </div>
+  <div class="modal-body">
+    <div *ngIf="selectedEtablissement">
+      <h5>{{ selectedEtablissement.nom }}</h5>
+      <p><strong>Type d'Établissement:</strong> {{ selectedEtablissement.typeEtablissement }}</p>
+      <p><strong>Email:</strong> {{ selectedEtablissement.email }}</p>
+      <p><strong>Site Web:</strong> {{ selectedEtablissement.site }}</p>
+      <p><strong>Directeur:</strong> {{ selectedEtablissement.directeur }}</p>
+      <p><strong>Adresse:</strong> {{ selectedEtablissement.adresse }}</p>
+      <p><strong>Responsable:</strong> {{ selectedEtablissement.responsable }}</p>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="modal.dismiss('Close click')">Fermer</button>
+  </div>
+</ng-template>
+</div>
