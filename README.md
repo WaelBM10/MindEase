@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 # MindEase
 =======
 # Datta Able Angular 18 Free Admin Dashboard [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=Get%20Datta%20%20Able%20Angular%20-%20The%20Most%20Beautiful%20Bootstrap%20Designed%20Admin%20Dashboard%20Template%20&url=https://codedthemes.com/demos/admin-templates/datta-able/angular/default&via=codedthemes&hashtags=angular,webdev,developers,typescript)
@@ -137,3 +138,6 @@ To report a bug, please submit an [issue](https://github.com/codedthemes/datta-a
 - Facebook [https://www.facebook.com/codedthemes](https://www.facebook.com/codedthemes)
 - Twitter [https://twitter.com/codedthemes](https://twitter.com/codedthemes)
 >>>>>>> ea8f831 (Initial commit)
+=======
+# MindEase
+>>>>>>> 048fee92b70fa5a44a6b875239958f76cedf136e
