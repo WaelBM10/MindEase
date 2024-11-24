@@ -38,6 +38,14 @@ export class NavigationService {
             classes: 'nav-item'
           },
           {
+            id: 'dashboarduser',
+            title: 'Dashboard User',
+            type: 'item',
+            url: '/dashboarduser',
+            icon: 'feather icon-home',
+            classes: 'nav-item'
+          },
+          {
             id: 'profile',
             title: 'profile',
             type: 'item',
@@ -111,6 +119,15 @@ export class NavigationService {
                 classes: 'nav-item',
                 icon: 'feather icon-file-text'
               },
+              {
+                id: 'Search',
+                title: 'Search Doctor',
+                type: 'item',
+                url: '/search',
+                classes: 'nav-item',
+                icon: 'feather icon-file-text'
+              }
+
               
               
             ]
@@ -144,8 +161,8 @@ export class NavigationService {
     // Définition des permissions de rôle
     const rolePermissions: { [key: string]: string[] } = {
       'Super Admin': ['dashboard', 'tables', 'apexChart', 'button', 'forms-element'],
-      'Doctor': ['dashboarddoctor','patientdoctor','consultationdoctor','List d`Ordonnance','profile','payement']
-      // Ajoutez d'autres rôles et leurs permissions ici
+      'Doctor': ['dashboarddoctor','patientdoctor','consultationdoctor','List d`Ordonnance','profile','payement'],
+      'user': ['dashboarduser', 'Search']
     };
 
     // Filtrer les éléments de navigation

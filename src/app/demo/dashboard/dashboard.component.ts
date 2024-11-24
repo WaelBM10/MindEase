@@ -252,7 +252,7 @@ this.areaAngleChart = {
   },
   yaxis: {
     title: {
-      text: 'Revenue en Mille  Dinars'
+      text: 'Revenue en Mille Euros'
     },
     min: 0,
     max: 100

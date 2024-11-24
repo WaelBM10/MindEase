@@ -1,11 +1,11 @@
-// angular import
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common'; // Import CommonModule
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 
-// project import
+// Project imports
 import { AppComponent } from './app.component';
 import { SharedModule } from './theme/shared/shared.module';
 import { GuestComponent } from './theme/layout/guest/guest.component';
@@ -21,10 +21,11 @@ import { NavCollapseComponent } from './theme/layout/admin/navigation/nav-conten
 import { NavGroupComponent } from './theme/layout/admin/navigation/nav-content/nav-group/nav-group.component';
 import { NavItemComponent } from './theme/layout/admin/navigation/nav-content/nav-item/nav-item.component';
 import { NavSearchComponent } from './theme/layout/admin/nav-bar/nav-left/nav-search/nav-search.component';
-import { NavigationService} from './theme/layout/admin/navigation/navigation.service';
+import { NavigationService } from './theme/layout/admin/navigation/navigation.service';
 import { ToggleFullScreenDirective } from './theme/shared/components/full-screen/toggle-full-screen';
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { MatIconModule } from '@angular/material/icon';  // Import du module MatIconModule
+
+// Import your components
+import { SearchComponent } from './demo/search/search.component';
 
 @NgModule({
   declarations: [
@@ -42,10 +43,19 @@ import { MatIconModule } from '@angular/material/icon';  // Import du module Mat
     NavGroupComponent,
     NavItemComponent,
     NavSearchComponent,
-    ToggleFullScreenDirective
+    ToggleFullScreenDirective,
+    SearchComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule, SharedModule, BrowserAnimationsModule , MatIconModule ],
-  providers: [NavigationService, provideAnimationsAsync() ],
-  bootstrap: [AppComponent]
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    SharedModule,
+    BrowserAnimationsModule,
+    CommonModule // Add CommonModule here
+  ],
+  providers: [NavigationService],
+  bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {}

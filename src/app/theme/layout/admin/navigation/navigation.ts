@@ -46,13 +46,22 @@ const NavigationItems: NavigationItem[] = [
         classes: 'nav-item'
       },
       {
+        id: 'dashboarduser',
+        title: 'Dashboard user',
+        type: 'item',
+        url: '/dashboarduser',
+        icon: 'feather icon-home',
+        classes: 'nav-item'
+      },
+      {
         id: 'profile',
         title: 'Profile',
         type: 'item',
         url: '/profile',
         icon: 'feather icon-user',
         classes: 'nav-item'
-      },
+      }
+      
     ]
   },
   {
@@ -93,6 +102,14 @@ const NavigationItems: NavigationItem[] = [
         classes: 'nav-item',
         icon: 'feather icon-lock'
       },
+      {
+        id: 'Search',
+        title: 'Search Doctor',
+        type: 'item',
+        url: '/search',
+        classes: 'nav-item',
+        icon: 'feather icon-file-text'
+      }
     ]
   },
   //  {

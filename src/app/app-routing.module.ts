@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AdminComponent } from './theme/layout/admin/admin.component';
 import { GuestComponent } from './theme/layout/guest/guest.component';
+import { PaymentCardComponent } from './demo/payment-card/payment-card.component';
 
 const routes: Routes = [
   {
@@ -70,7 +71,17 @@ const routes: Routes = [
       {
         path:'payement',
         loadComponent: () => import('./demo/payement/payement.component').then(m => m.PayementComponent)
+      },
+         {
+        path: 'dashboarduser',
+        loadComponent: () => import('./demo/dashboard-user/dashboard-user.component').then(m => m.DashboardUserComponent)
       }
+      ,
+      {
+        path: 'search',
+        loadComponent: () => import('./demo/search/search.component').then(m => m.SearchComponent)
+       }, { path: 'paypal', component: PaymentCardComponent }
+
     
     ]
   },
