@@ -1,0 +1,19 @@
+<div class="payment-card">
+    <div class="card-header">
+      <h1>Payment Details</h1>
+    </div>
+    
+    <div class="card-body">
+      <p><strong>Transport Fees:</strong> {{ transportFees }}</p>
+      <p><strong>Consultation Fee:</strong> {{ (consultationTime / 60) * serviceFees }}</p>
+      <p><strong>Guarantee Amount:</strong> {{ guaranteeAmount }}</p>
+      <hr />
+      <p><strong>Total Amount:</strong> <span class="total">{{ totalAmount }}</span></p>
+    </div>
+  
+    <div class="card-footer">
+      <h2>Pay with PayPal</h2>
+      <div #paymentRef class="paypal-button-container"></div>
+    </div>
+  </div>
+  

@@ -1,0 +1,56 @@
+<div class="search-container">
+    <!-- Search Bar -->
+    <div class="search-bar">
+      <input type="text" placeholder="Search for a doctor" [(ngModel)]="searchQuery" />
+      <button (click)="searchDoctors()">Search</button>
+    </div>
+  
+    <!-- Filters Section -->
+    <div class="filters">
+      <button (click)="filterBySpecialty()">Specialty</button>
+      <button (click)="filterByLocation()">Location</button>
+      <button (click)="filterByRating()">Rating</button>
+    </div>
+  
+    <!-- Doctor Cards -->
+    <div class="results">
+      <div *ngFor="let doctor of doctors" (click)="openModal(doctor)" class="doctor-card">
+        <img [src]="doctor.image" alt="{{doctor.name}}" class="doctor-image" />
+        <div class="doctor-info">
+          <div class="doctor-name">{{ doctor.name }}</div>
+          <div class="doctor-profession">{{ doctor.profession }}</div>
+          <div class="doctor-location">{{ doctor.location }}</div>
+          <div class="doctor-rating">
+            Rating: <span class="rating-value">{{ doctor.rating }}</span> ⭐
+          </div>
+          <div class="doctor-hourly-rate">Hourly Rate: <span class="rate-value">{{ doctor.hourlyRate }}</span></div>
+          <div class="doctor-earnings">Earnings: <span class="earnings-value">{{ doctor.earnings }}</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Modal -->
+  <div *ngIf="modalData" class="modal">
+    <div class="modal-content">
+      <span class="close" (click)="closeModal()">×</span>
+      <div class="modal-header">
+        <img [src]="modalData.image" alt="{{ modalData.name }}" />
+        <h2>{{ modalData.name }}</h2>
+      </div>
+      <div class="modal-body">
+        <p><strong>Profession:</strong> {{ modalData.profession }}</p>
+        <p><strong>Location:</strong> {{ modalData.location }}</p>
+        <p><strong>Hourly Rate:</strong> {{ modalData.hourlyRate }}</p>
+        <p><strong>Earnings:</strong> {{ modalData.earnings }}</p>
+        <p><strong>Last Message:</strong> {{ modalData.lastMessage }}</p>
+        <div *ngFor="let tag of modalData.tags">
+          <span class="tag">{{ tag }}</span>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a [routerLink]="['/paypal']" class="payment-btn">Pay with PayPal</a>
+    </div>
+    </div>
+  </div>
+  

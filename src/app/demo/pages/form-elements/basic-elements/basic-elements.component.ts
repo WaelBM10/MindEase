@@ -54,6 +54,15 @@ export default class BasicElementsComponent {
       prenom: 'kahla',
       role: 'doctor',
       locale: 'Clinique Tawfik'
+    },
+    {
+      email: 'fourat@gmail.com',
+      phone: '22874159',
+      password: '123456789',
+      nom: 'fourat',
+      prenom: 'kahla',
+      role: 'doctor',
+      locale: 'Clinique Tawfik'
     }
     // Ajoutez d'autres utilisateurs selon vos besoins
   ];

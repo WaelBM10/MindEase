@@ -18,7 +18,7 @@ export default class AuthSigninComponent {
   users = [
     { email: 'walidgallouz@gmail.com', password: '123456789', role: 'Super Admin' },
     { email: 'youssefghozzi@gmail.com', password: '123456789', role: 'Doctor' },
-    { email: 'user@example.com', password: 'user123', role: 'USER' }
+    { email: 'fourat@gmail.com', password: '123456789', role: 'user' }
   ];
 
   constructor(private router: Router, private authService: AuthService) {}
@@ -35,7 +35,7 @@ export default class AuthSigninComponent {
       } else if (role === 'Doctor') {
         this.router.navigate(['/dashboarddoctor']);
       } else {
-        this.router.navigate(['/dashboard/user']);
+        this.router.navigate(['/dashboarduser']);
       }
     } else {
       alert('Email ou mot de passe incorrect');

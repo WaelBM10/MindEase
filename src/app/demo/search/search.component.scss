@@ -1,0 +1,174 @@
+/* Results Section Styles */
+.results {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin-top: 20px;
+  justify-content: space-between;
+}
+
+/* Doctor Card Styles */
+.doctor-card {
+  display: flex; /* Align items horizontally */
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+  padding: 20px;
+  width: 100%; /* Full width */
+  max-width: 100%; /* Make sure it takes full space */
+  align-items: center;
+}
+
+.doctor-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Doctor Image Styles */
+.doctor-image {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-right: 20px;
+}
+
+/* Doctor Info Section */
+.doctor-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: calc(100% - 140px); /* Adjust width based on image size */
+  gap: 15px; /* Space between information */
+}
+
+/* Font Size and Spacing Adjustments */
+.doctor-name {
+  font-size: 24px; /* Larger font size */
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.doctor-profession {
+  font-size: 20px; /* Larger font size */
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.doctor-location {
+  font-size: 18px;
+  color: #777;
+}
+
+.doctor-rating,
+.doctor-hourly-rate,
+.doctor-earnings {
+  font-size: 18px; /* Larger font size */
+  color: #555;
+  margin-top: 10px;
+}
+
+.rating-value {
+  font-weight: bold;
+}
+
+.rate-value,
+.earnings-value {
+  font-weight: bold;
+  color: #007bff;
+}
+
+/* Filters Section */
+.filters {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.filters button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 12px 18px;
+  font-size: 16px; /* Larger font size */
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.filters button:hover {
+  background-color: #0056b3;
+}
+
+/* Modal Styling */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 80%;
+  max-width: 600px;
+}
+
+.close {
+  font-size: 30px; /* Larger close icon */
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+/* Modal Header */
+.modal-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.modal-header img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.modal-header h2 {
+  font-size: 28px; /* Larger font size */
+  font-weight: bold;
+}
+
+/* Modal Footer */
+.modal-footer {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.payment-btn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 18px; /* Larger font size */
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.payment-btn:hover {
+  background-color: #0056b3;
+}

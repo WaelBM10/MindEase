@@ -7,7 +7,7 @@ export class AuthService {
   private users = [
     { email: 'walidgallouz@gmail.com', password: '123456789', role: 'Super Admin' },
     { email: 'youssefghozzi@gmail.com', password: '123456789', role: 'Doctor' },
-    { email: 'user@example.com', password: 'user123', role: 'USER' }
+    { email: 'fourat@gmail.com', password: '123456789', role: 'user' }
   ];
 
   constructor() {}
