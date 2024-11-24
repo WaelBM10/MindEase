@@ -1,0 +1,85 @@
+<div class="row">
+    <div class="col-xl-12">
+      <app-card cardTitle="Table des Paiements" [options]="false" blockClass="table-border-style">
+        <!-- Formulaire de filtre -->
+        <div class="row mb-3">
+          <div class="col-md-4">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Filtrer par date de paiement"
+              (input)="onFilterByAmount($event)"
+            />
+          </div>
+          <div class="col-md-4">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Filtrer par méthode de paiement"
+              (input)="onFilterByMethod($event)"
+            />
+          </div>
+            <div class="col-md-4">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Filtrer par méthode de paiement"
+              (input)="onFilterByStatus($event)"
+            />
+          </div>
+          <div class="col-md-4 text-right">
+          </div>
+        </div>
+  
+        <!-- Tableau des paiements -->
+        <div class="table-responsive">
+          <table class="table table-styling">
+            <thead>
+              <tr class="table-primary">
+                <th>#</th>
+                <th>Date de Paiement</th>
+                <th>Montant</th>
+                <th>Méthode de Paiement</th>
+                <th>Statut</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let payment of filteredPayments; let i = index">
+                <th scope="row">{{ i + 1 }}</th>
+                <td>{{ payment.datePaiement | date }}</td>
+                <td>{{ payment.montant }}</td>
+                <td>{{ payment.methodePaiement }}</td>
+                <td>{{ payment.statutPaiement }}</td>
+                <td>
+                  <button class="btn btn-info btn-sm" (click)="openModal('view', payment)">Voir</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </app-card>
+    </div>
+  </div>
+  
+  <!-- Modal pour voir un paiement -->
+  <ng-template #profileModal let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Détails du Paiement</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div *ngIf="selectedpayement">
+        <h5>Numéro de Transaction: {{ selectedpayement.numeroTransaction }}</h5>
+        <p><strong>Montant :</strong> {{ selectedpayement.montant }} TND</p>
+        <p><strong>Méthode de Paiement:</strong> {{ selectedpayement.methodePaiement }}</p>
+        <p><strong>Date de Paiement:</strong> {{ selectedpayement.datePaiement | date: 'short' }}</p>
+        <p><strong>Statut de Paiement:</strong> {{ selectedpayement.statutPaiement }}</p>
+        <p><strong>Commentaire :</strong> {{ selectedpayement.commentaire }}</p>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="modal.dismiss('Close click')">Fermer</button>
+    </div>
+  </ng-template>
+  

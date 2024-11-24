@@ -1,0 +1,76 @@
+<div class="container mt-5">
+    <!-- Card de profil -->
+    <div class="card shadow-lg">
+      <div class="row no-gutters">
+        <div class="col-md-4">
+          <!-- Image du médecin -->
+          <img src="../../../assets/images/doctor/doctor 1.jpg" class="card-img" alt="Doctor Profile">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h3 class="card-title">{{ doctor.name }}</h3>
+            <p class="card-text"><strong>Spécialité:</strong> {{ doctor.specialty }}</p>
+            <p class="card-text"><strong>Années d'expérience:</strong> {{ doctor.experience }}</p>
+  
+            <!-- Rating (Note) -->
+            <p class="card-text">
+              <strong>Note:</strong>
+              <span class="text-warning">
+                <ng-container *ngFor="let star of [].constructor(5); let i = index">
+                  <span *ngIf="i < doctor.rating">★</span>
+                  <span *ngIf="i >= doctor.rating">☆</span>
+                </ng-container>
+              </span>
+              ({{ doctor.rating }})
+            </p>
+
+            <div class="rating-container">
+                <ng-container *ngFor="let star of [].constructor(5); let i = index">
+                  <span *ngIf="i < doctor.rating">★</span> <!-- Étoile pleine -->
+                  <span *ngIf="i >= doctor.rating">☆</span> <!-- Étoile vide -->
+                </ng-container>
+                <span class="rating-text">{{ doctor.rating }}</span>
+              </div>
+              
+  
+            <!-- Badge de validation -->
+            <span *ngIf="doctor.validationBadge" class="badge badge-success">Médecin Validé</span>
+  
+            <hr>
+  
+            <!-- Contact du médecin -->
+            <p><strong>Contact:</strong></p>
+            <p><i class="fas fa-phone"></i> {{ doctor.contact.phone }}</p>
+            <p><i class="fas fa-envelope"></i> {{ doctor.contact.email }}</p>
+            <p><i class="fas fa-map-marker-alt"></i> {{ doctor.contact.address }}</p>
+  
+            <hr>
+  
+            <!-- À propos du médecin -->
+            <p><strong>À propos de Dr. {{ doctor.name.split(' ')[1] }}:</strong></p>
+            <p>{{ doctor.about }}</p>
+  
+            <hr>
+  
+            <!-- Certifications -->
+            <p><strong>Certifications: Certified Clinical Child and Adolescent Psychology </strong></p>
+            <ul>
+              <li *ngFor="let cert of doctor.certifications">{{ cert }}</li>
+            </ul>
+  
+            <!-- Langues parlées -->
+            <p><strong>Langues parlées:</strong> {{ doctor.languages.join(', ') }}</p>
+  
+            <!-- Témoignages -->
+            <p><strong>Specialités: Child and Adolescent Psychology,ADHD</strong></p>
+            <ul>
+              <li *ngFor="let test of doctor.testimonials">
+                <strong>{{ test.name }}:</strong> {{ test.comment }}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

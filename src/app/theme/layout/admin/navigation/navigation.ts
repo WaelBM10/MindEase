@@ -44,12 +44,60 @@ const NavigationItems: NavigationItem[] = [
         url: '/dashboarddoctor',
         icon: 'feather icon-home',
         classes: 'nav-item'
-      }
+      },
+      {
+        id: 'profile',
+        title: 'Profile',
+        type: 'item',
+        url: '/profile',
+        icon: 'feather icon-user',
+        classes: 'nav-item'
+      },
     ]
   },
-  // {
-  //   id: 'ui-element',
-  //   title: 'UI ELEMENT',
+  {
+    id: 'forms',
+    title: 'list de User',
+    type: 'group',
+    icon: 'icon-group',
+    children: [
+      {
+        id: 'tables',
+        title: 'List de Médecin',
+        type: 'item',
+        url: '/tables/bootstrap',
+        classes: 'nav-item',
+        icon: 'feather icon-user'
+      },
+      {
+        id: 'apexChart',
+        title: 'List de Etablissement',
+        type: 'item',
+        url: '/apexchart',
+        classes: 'nav-item',
+        icon: 'feather icon-server'
+      },
+      {
+        id: 'button',
+        title: 'List de Pharmacie',
+        type: 'item',
+        url: '/basic/button',
+        classes: 'nav-item',
+        icon:'feather icon-zap'
+      },
+      {
+        id: 'forms-element',
+        title: 'Gérer les comptes',
+        type: 'item',
+        url: '/forms/basic',
+        classes: 'nav-item',
+        icon: 'feather icon-lock'
+      },
+    ]
+  },
+  //  {
+  //   id: 'Payement',
+  //   title: 'Payement',
   //   type: 'group',
   //   icon: 'icon-ui',
   //   children: [
@@ -100,61 +148,21 @@ const NavigationItems: NavigationItem[] = [
   //   ]
   // },
   {
-    id: 'forms',
-    title: 'list de User',
+    id: 'Payement',
+    title: 'Payement',
     type: 'group',
     icon: 'icon-group',
     children: [
       {
-        id: 'tables',
-        title: 'List de Médecin',
+        id: 'Payement',
+        title: 'Payement',
         type: 'item',
-        url: '/tables/bootstrap',
+        url: 'apexchart',
         classes: 'nav-item',
-        icon: 'feather icon-user'
-      },
-      {
-        id: 'apexChart',
-        title: 'List de Etablissement',
-        type: 'item',
-        url: '/apexchart',
-        classes: 'nav-item',
-        icon: 'feather icon-server'
-      },
-      {
-        id: 'button',
-        title: 'List de Pharmacie',
-        type: 'item',
-        url: '/basic/button',
-        classes: 'nav-item',
-        icon:'feather icon-zap'
-      },
-      {
-        id: 'forms-element',
-        title: 'Gérer les comptes',
-        type: 'item',
-        url: '/forms/basic',
-        classes: 'nav-item',
-        icon: 'feather icon-lock'
-      },
+        icon: 'icon-zap',
+      }
     ]
   },
-  // {
-  //   id: 'chart-maps',
-  //   title: 'Chart',
-  //   type: 'group',
-  //   icon: 'icon-charts',
-  //   children: [
-  //     {
-  //       id: 'apexChart',
-  //       title: 'ApexChart',
-  //       type: 'item',
-  //       url: 'apexchart',
-  //       classes: 'nav-item',
-  //       icon: 'feather icon-pie-chart'
-  //     }
-  //   ]
-  // },
   // {
   //   id: 'pages',
   //   title: 'Pages',

@@ -62,7 +62,16 @@ const routes: Routes = [
       {
         path:'List_Ordonnance',
         loadComponent: () => import('./demo/ordonnance/ordonnancelist/ordonnancelist.component').then(m => m.OrdonnancelistComponent)
+      },
+      {
+        path:'profile',
+        loadComponent: () => import('./demo/profile/profile.component').then(m => m.ProfileComponent)
+      },
+      {
+        path:'payement',
+        loadComponent: () => import('./demo/payement/payement.component').then(m => m.PayementComponent)
       }
+    
     ]
   },
 ];

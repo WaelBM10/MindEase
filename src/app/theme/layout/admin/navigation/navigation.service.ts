@@ -26,7 +26,7 @@ export class NavigationService {
             title: 'Dashboard',
             type: 'item',
             url: '/dashboard',
-            icon: 'feather icon-home',
+            icon: 'feather icon-user',
             classes: 'nav-item'
           },
           {
@@ -35,6 +35,14 @@ export class NavigationService {
             type: 'item',
             url: '/dashboarddoctor',
             icon: 'feather icon-home',
+            classes: 'nav-item'
+          },
+          {
+            id: 'profile',
+            title: 'profile',
+            type: 'item',
+            url: '/profile',
+            icon: 'feather icon-user',
             classes: 'nav-item'
           },
         ]
@@ -102,7 +110,24 @@ export class NavigationService {
                 url: '/List_Ordonnance',
                 classes: 'nav-item',
                 icon: 'feather icon-file-text'
-              }
+              },
+              
+              
+            ]
+          },{
+              id: 'payement',
+              title: 'Payement',
+              type: 'group',
+              icon: 'icon-group',
+              children: [
+                {
+                  id: 'payement',
+                  title: 'Payement',
+                  type: 'item',
+                  url: '/payement',
+                  classes: 'nav-item',
+                icon: 'feather icon-file-text'
+                },
             ]
           }
         ]
@@ -119,7 +144,7 @@ export class NavigationService {
     // Définition des permissions de rôle
     const rolePermissions: { [key: string]: string[] } = {
       'Super Admin': ['dashboard', 'tables', 'apexChart', 'button', 'forms-element'],
-      'Doctor': ['dashboarddoctor','patientdoctor','consultationdoctor','List d`Ordonnance']
+      'Doctor': ['dashboarddoctor','patientdoctor','consultationdoctor','List d`Ordonnance','profile','payement']
       // Ajoutez d'autres rôles et leurs permissions ici
     };
 

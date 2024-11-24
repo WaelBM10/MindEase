@@ -1,0 +1,31 @@
+.card {
+    max-width: 1000px;  // Augmenter la largeur maximale de la carte
+    margin: 20px auto;
+  }
+  
+  .card-body {
+    padding: 30px;  // Augmenter l'espace autour du contenu de la carte
+  }
+  
+  .card-title {
+    font-size: 2rem;  // Augmenter la taille du titre
+  }
+  
+  .card-text {
+    font-size: 1.2rem;  // Agrandir la taille du texte pour le rendre plus lisible
+  }
+  
+  img.card-img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
+  
+  ul {
+    padding-left: 20px;
+  }
+  
+  ul li {
+    font-size: 1.1rem;
+  }
+  

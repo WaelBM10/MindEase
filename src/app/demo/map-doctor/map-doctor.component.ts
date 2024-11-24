@@ -37,12 +37,12 @@ export class MapDoctorComponent implements OnInit {
   ];
   // Liste des patients avec maladies dangereuses
   diseaseClusters = [
-    { lat: 36.8065, lng: 10.1815, disease: 'Patien:Mohamed Rkik | Malaria', address: 'Pharmacie Al Amal, Tunis, Avenue Habib Bourguiba' },
-    { lat: 34.7406, lng: 10.7611, disease: 'Patien:Wael Hamdi | Cholera', address: 'Pharmacie Chouikha, Sfax, Rue de la République' },
-    { lat: 35.8256, lng: 10.6367, disease: 'Patien:Yassine Ghorbal | Dengue', address: 'Pharmacie La Reine, Sousse, Rue de Marseille' },
-    { lat: 36.83537504633271, lng: 10.234725833263113, disease: 'Patien:Youssef Nesiri | Typhoid', address: 'Pharmacie La Reine, Tunis, Rue du Lac' },
-    { lat: 34.7428, lng: 10.7651, disease: 'Patien:Yassmine Gharbi | Covid', address: 'Pharmacie Chouikha, Sfax, Rue de la République' },
-    { lat: 35.8300, lng: 10.6333, disease: 'Patien:Louay Ali | Covid', address: 'Pharmacie Al Amal, Sousse, Avenue de l’Indépendance' },
+    { lat: 36.8065, lng: 10.1815, disease: 'Patien:Mohamed Rkik | Stress', address: 'Pharmacie Al Amal, Tunis, Avenue Habib Bourguiba' },
+    { lat: 34.7406, lng: 10.7611, disease: 'Patien:Wael Hamdi | Addiction', address: 'Pharmacie Chouikha, Sfax, Rue de la République' },
+    { lat: 35.8256, lng: 10.6367, disease: 'Patien:Yassine Ghorbal | Stress', address: 'Pharmacie La Reine, Sousse, Rue de Marseille' },
+    { lat: 36.83537504633271, lng: 10.234725833263113, disease: 'Patien:Youssef Nesiri | ADHD', address: 'Pharmacie La Reine, Tunis, Rue du Lac' },
+    { lat: 34.7428, lng: 10.7651, disease: 'Patien:Yassmine Gharbi | Addiction', address: 'Pharmacie Chouikha, Sfax, Rue de la République' },
+    { lat: 35.8300, lng: 10.6333, disease: 'Patien:Louay Ali | Stress', address: 'Pharmacie Al Amal, Sousse, Avenue de l’Indépendance' },
   ];
 
   markers: Marker[] = [];

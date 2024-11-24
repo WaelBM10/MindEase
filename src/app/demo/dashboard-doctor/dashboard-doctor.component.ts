@@ -562,9 +562,9 @@ export class DashboardDoctorComponent implements OnInit{
   }
 
   sales = [
-    { title: 'Total Patient', icon: 'icon-user text-c-black', amount: '980', percentage: '67%', progress: 50, design: 'col-md-6' },
-    { title: 'Total Etablissement de Travaille', icon: 'icon-map-pin text-c-blue', amount: '3', percentage: '10%', progress: 10, design: 'col-md-6' },
-    { title: 'Total Consultation', icon: 'icon-zap text-c-green', amount: '450', percentage: '35%', progress: 34, design: 'col-md-12' }
+    { title: 'Total Patient', icon: 'icon-user text-c-black', amount: '20', percentage: '67%', progress: 50, design: 'col-md-6' },
+    { title: 'Earnings', icon: 'icon-file-text text-c-green', amount: '1240 Dt', percentage: '10%', progress: 10, design: 'col-md-6' },
+    { title: 'Total Consultation', icon: 'icon-zap text-c-blue', amount: '45', percentage: '35%', progress: 34, design: 'col-md-12' }
   ];
 
   card1 = [

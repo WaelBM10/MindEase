@@ -70,7 +70,7 @@ export class OrdonnancelistComponent implements OnInit {
         { medicament: 'Amoxicilline', duree: '7 jours', posologie: '1 comprimé toutes les 8 heures' }
       ],
       time: '11 MAY 2024 12:56',
-      type_de_maladie:'grippe',
+      type_de_maladie:'Depression ',
       qrCodeData: 'ID: ord1, Patient: Ali Ben Ali, Doctor: Dr. Youssef Ghozzi, Specialty: Généraliste, Phone: +216 71 234 567, Address: 32 rue de Djerba, Ben Arous, Tunis',
       qrCodeUrl: ''  
     },
@@ -84,7 +84,7 @@ export class OrdonnancelistComponent implements OnInit {
         { medicament: 'Loratadine', duree: '10 jours', posologie: '1 comprimé chaque jour' }
       ],
       time: '11 MAY 2024 10:35',
-      type_de_maladie:'covid',
+      type_de_maladie:'ADHD',
       qrCodeData: 'ID: ord2, Patient: Fatima Zahra, Doctor: Dr. Youssef Ghozzi, Specialty: Généraliste, Phone: +216 71 234 568, Address: 32 rue de Djerba, Ben Arous, Tunis',
       qrCodeUrl: ''  
     },
@@ -98,7 +98,7 @@ export class OrdonnancelistComponent implements OnInit {
         { medicament: 'Metformine', duree: '30 jours', posologie: '1 comprimé avec le repas du soir' }
       ],
       time: '9 JAN 2024 17:38',
-      type_de_maladie:'bronchite',
+      type_de_maladie:'ADHD',
       qrCodeData: 'ID: ord3, Patient: Khaled Baccouche, Doctor: Dr. Youssef Ghozzi, Specialty: Généraliste, Phone: +216 71 234 569, Address: 32 rue de Djerba, Ben Arous, Tunis',
       qrCodeUrl: ''  
     },
@@ -112,7 +112,7 @@ export class OrdonnancelistComponent implements OnInit {
         { medicament: 'Amoxicilline', duree: '10 jours', posologie: '1 comprimé toutes les 8 heures' }
       ],
       time: '9 DEC 2024 12:56',
-      type_de_maladie:'grippe',
+      type_de_maladie:'Depression ',
       qrCodeData: 'ID: ord4, Patient: Mariam Bouazizi, Doctor: Dr. Youssef Ghozzi, Specialty: Généraliste, Phone: +216 71 234 570, Address: 32 rue de Djerba, Ben Arous, Tunis',
       qrCodeUrl: ''  
     }

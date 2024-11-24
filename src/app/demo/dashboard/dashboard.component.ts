@@ -82,15 +82,15 @@ export default class DashboardComponent implements OnInit {
     this.maladieChart = {
       series: [
         {
-          name: 'Diabète',
+          name: 'Gestion du Stress',
           data: [50, 60, 70, 50, 49, 60, 70, 91, 125]
         },
         {
-          name: 'Grippe',
+          name: 'Dépression',
           data: [120, 50, 65, 70, 49, 60, 95, 50, 60]
         },
         {
-          name: 'COVID-19',
+          name: 'Anxiété',
           data: [80, 100, 110, 120, 130, 140, 150, 160, 170]
         }
       ],
@@ -134,15 +134,15 @@ export default class DashboardComponent implements OnInit {
     this.medicamentChart = {
       series: [
         {
-          name: 'Metformine',
+          name: 'Sertraline',
           data: [64, 55, 65, 67, 82, 93, 71, 109, 72]
         },
         {
-          name: 'Oseltamivir',
+          name: 'Escitalopram',
           data: [18, 23, 20, 8, 13, 27, 33, 12, 22]
         },
         {
-          name: 'Remdesivir',
+          name: 'Amitriptyline',
           data: [11, 17, 15, 15, 21, 14, 15, 13, 19]
         }
       ],
@@ -245,14 +245,14 @@ this.areaAngleChart = {
     }
   ],
   xaxis: {
-    categories: ['Paracetamol', 'Ibuprofen', 'Amoxicillin', 'Aspirin', 'Ciprofloxacin', 'Metformin'], // Noms des médicaments
+    categories: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin'],
     title: {
-      text: 'Médicaments'
+      text: 'Revenue'
     }
   },
   yaxis: {
     title: {
-      text: 'Pourcentage de Stockage'
+      text: 'Revenue en Mille  Dinars'
     },
     min: 0,
     max: 100
@@ -359,7 +359,7 @@ this.areaAngleChart = {
       },
       colors: ['#008FFB', '#00D8B6', '#FEB019', '#FF4560'],
       series: [980, 580, 450, 2500],
-      labels: ['Médecin', 'Etablissement', 'Pharmacie', 'Ordonnance'],
+      labels: ['France', 'Belgium', 'Suisse', 'Autre'],
       legend: {
         position: 'left',
         offsetY: 80
@@ -565,14 +565,14 @@ this.areaAngleChart = {
   }
 
   sales = [
-    { title: 'Total Médecin', icon: 'icon-user text-c-black', amount: '980', percentage: '67%', progress: 50, design: 'col-md-6' },
-    { title: 'Total Etablissement', icon: 'icon-map-pin text-c-blue', amount: '580', percentage: '36%', progress: 35, design: 'col-md-6' },
-    { title: 'Total Pharmacie', icon: 'icon-zap text-c-green', amount: '450', percentage: '35%', progress: 34, design: 'col-md-12' }
+    { title: 'Total Patients', icon: 'icon-user text-c-black', amount: '980', percentage: '67%', progress: 50, design: 'col-md-6' },
+    { title: 'Total Medecins', icon: 'icon-map-pin text-c-blue', amount: '580', percentage: '36%', progress: 35, design: 'col-md-6' },
+    { title: 'Total Sessions', icon: 'icon-zap text-c-green', amount: '450', percentage: '35%', progress: 34, design: 'col-md-12' }
   ];
 
   card = [
-    { design: 'border-bottom', number: '2305', text: 'TOTAL COMPTE', icon: 'icon-zap text-c-green' },
-    { number: '1030', text: 'TOTAL LOCATION ( PHARMACIE et ETABLISEEMENT )', icon: 'icon-map-pin text-c-blue' }
+    { design: 'border-bottom', number: '25', text: 'Séances Zoom Actives', icon: 'icon-zap text-c-green' },
+    { number: '130', text: 'Séances Terminées', icon: 'icon-zap text-c-blue' }
   ];
 
   social_card = [
@@ -611,23 +611,23 @@ this.areaAngleChart = {
   ];
 
 
-  tables = [
+  tables =[
     {
       url: 'assets/images/user/avatar-1.jpg',
       title: { nameFr: 'Dr.*******', nameAr: 'د.*******' },
-      specialty: { specialtyFr: 'Cardiologue', specialtyAr: 'أخصائي القلب' },
+      specialty: { specialtyFr: 'Psychiatre', specialtyAr: 'أخصائي الطب النفسي' },  // Psychiatrist
       patient: '*******',
       patientAge: 45,
       patientAddress: { addressFr: '********', addressAr: '********' },
       prescription: [
-        { medicament: 'Atorvastatin', duree: '30 jours', posologie: '1 comprimé chaque soir' },
-        { medicament: 'Lisinopril', duree: '14 jours', posologie: '1 comprimé chaque matin' }
+        { medicament: 'Fluoxetine', duree: '30 jours', posologie: '1 comprimé chaque matin' },  // Example of medication for mood regulation
+        { medicament: 'Clonazepam', duree: '14 jours', posologie: '1 comprimé chaque soir' } // Example for anxiety
       ],
       time: '11 MAY 2024 12:56',
-      type_de_maladie: "Hypertension Artérielle",
+      type_de_maladie: "Trouble de la personnalité antisociale",  // Antisocial Personality Disorder
       associatedMedications: [
-        { medicament: 'Atorvastatin', indication: 'Cholestérol élevé' },
-        { medicament: 'Lisinopril', indication: 'Hypertension artérielle' }
+        { medicament: 'Fluoxetine', indication: 'Dépression' },  // Treating depression or emotional regulation
+        { medicament: 'Clonazepam', indication: 'Anxiété' }  // Treating anxiety
       ],
       color: 'text-c-green',
       phone: '+216 *********',
@@ -638,21 +638,19 @@ this.areaAngleChart = {
     {
       url: 'assets/images/user/avatar-2.jpg',
       title: { nameFr: 'Dr.*******', nameAr: 'د.*******' },
-      specialty: { specialtyFr: 'Généraliste', specialtyAr: 'طبيب عام' },
+      specialty: { specialtyFr: 'Psychiatre', specialtyAr: 'أخصائي الطب النفسي' },  // Psychiatrist
       patient: '*******',
       patientAge: 38,
       patientAddress: { addressFr: '********', addressAr: '********' },
       prescription: [
-        { medicament: 'Carbamazépine', duree: '60 jours', posologie: '2 comprimés par jour après les repas' },
-        { medicament: 'Ibuprofen', duree: '10 jours', posologie: '1 comprimé toutes les 8 heures en cas de douleur' },
-        { medicament: 'Ondansétron', duree: 'as needed', posologie: '1 comprimé toutes les 6 heures en cas de nausées' }
+        { medicament: 'Lithium', duree: '60 jours', posologie: '1 comprimé matin et soir' },  // Common for mood stabilization
+        { medicament: 'Sertraline', duree: '10 jours', posologie: '1 comprimé par jour' }  // Treating anxiety or depression
       ],
       time: '11 MAY 2024 10:35',
-      type_de_maladie: "Épilepsie",
+      type_de_maladie: "Trouble de la personnalité narcissique",  // Narcissistic Personality Disorder (associated with psychopathy)
       associatedMedications: [
-        { medicament: 'Carbamazépine', indication: 'Épilepsie' },
-        { medicament: 'Ibuprofen', indication: 'Douleur' },
-        { medicament: 'Ondansétron', indication: 'Nausées' }
+        { medicament: 'Lithium', indication: 'Stabilisation de lhumeur' },
+        { medicament: 'Sertraline', indication: 'Anxiété et dépression' }
       ],
       color: 'text-c-red',
       phone: '+216 *********',
@@ -661,21 +659,21 @@ this.areaAngleChart = {
       stamp: 'Dr. *************************************'
     },
     {
-      url: 'assets/images/user/avatar-5.jpg',
+      url: 'assets/images/user/avatar-3.jpg',
       title: { nameFr: 'Dr.*******', nameAr: 'د.*******' },
-      specialty: { specialtyFr: 'Dermatologue', specialtyAr: 'أخصائي الأمراض الجلدية' },
+      specialty: { specialtyFr: 'Psychiatre', specialtyAr: 'أخصائي الطب النفسي' },  // Psychiatrist
       patient: '*******',
       patientAge: 52,
       patientAddress: { addressFr: '********', addressAr: '********' },
       prescription: [
-        { medicament: 'Hydrocortisone', duree: '14 jours', posologie: 'Appliquer la crème deux fois par jour' },
-        { medicament: 'Doxycycline', duree: '30 jours', posologie: '1 comprimé matin et soir après les repas' }
+        { medicament: 'Quetiapine', duree: '14 jours', posologie: '1 comprimé chaque soir' },  // Antipsychotic
+        { medicament: 'Diazepam', duree: '30 jours', posologie: '1 comprimé par jour si nécessaire' }  // For anxiety
       ],
-      time: '9 jan 2024 17:38',
-      type_de_maladie: "Dermatite",
+      time: '9 JAN 2024 17:38',
+      type_de_maladie: "Syndrome de glissement",  // A term for severe psychopathy with emotional detachment
       associatedMedications: [
-        { medicament: 'Hydrocortisone', indication: 'Dermatite' },
-        { medicament: 'Doxycycline', indication: 'Infection cutanée' }
+        { medicament: 'Quetiapine', indication: 'Psychose et comportement agressif' },
+        { medicament: 'Diazepam', indication: 'Anxiété et agitation' }
       ],
       color: 'text-c-green',
       phone: '+216 *********',
@@ -684,21 +682,21 @@ this.areaAngleChart = {
       stamp: 'Dr. *************************************'
     },
     {
-      url: 'assets/images/user/avatar-3.jpg',
+      url: 'assets/images/user/avatar-4.jpg',
       title: { nameFr: 'Dr.*******', nameAr: 'د.*******' },
-      specialty: { specialtyFr: 'Pédiatre', specialtyAr: 'أخصائي الأطفال' },
+      specialty: { specialtyFr: 'Psychiatre', specialtyAr: 'أخصائي الطب النفسي' },  // Psychiatrist
       patient: '*******',
       patientAge: 30,
       patientAddress: { addressFr: '********', addressAr: '********' },
       prescription: [
-        { medicament: 'Paracétamol', duree: '7 jours', posologie: '1 cuillère à café toutes les 6 heures si fièvre' },
-        { medicament: 'Amoxicilline', duree: '10 jours', posologie: '1 comprimé toutes les 8 heures' }
+        { medicament: 'Aripiprazole', duree: '7 jours', posologie: '1 comprimé chaque matin' },  // Treating psychosis or emotional instability
+        { medicament: 'Escitalopram', duree: '10 jours', posologie: '1 comprimé chaque soir' }  // Treating depression or anxiety
       ],
-      time: '9 dec 2024 12:56',
-      type_de_maladie: "Infection virale",
+      time: '9 DEC 2024 12:56',
+      type_de_maladie: "Trouble borderline de la personnalité",  // Borderline Personality Disorder (may overlap with psychopathy)
       associatedMedications: [
-        { medicament: 'Paracétamol', indication: 'Fièvre' },
-        { medicament: 'Amoxicilline', indication: 'Infection bactérienne' }
+        { medicament: 'Aripiprazole', indication: 'Psychose et impulsivité' },
+        { medicament: 'Escitalopram', indication: 'Dépression et anxiété' }
       ],
       color: 'text-c-red',
       phone: '+216 *********',
